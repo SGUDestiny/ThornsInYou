@@ -28,7 +28,7 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
 
     public final CopperKettleBlockEntity blockEntity;
     public final ItemStackHandler inventory;
-    private final ContainerData cookingPotData;
+    private final ContainerData copperKettleData;
     private final ContainerLevelAccess canInteractWithCallable;
     protected final Level level;
 
@@ -41,7 +41,7 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
         super(ModMenuTypes.COPPER_KETTLE.get(), windowId);
         this.blockEntity = blockEntity;
         this.inventory = blockEntity.getInventory();
-        this.cookingPotData = cookingPotDataIn;
+        this.copperKettleData = cookingPotDataIn;
         this.level = playerInventory.player.level();
         this.canInteractWithCallable = ContainerLevelAccess.create(blockEntity.getLevel(), blockEntity.getBlockPos());
 
@@ -150,8 +150,8 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
     }
 
     public int getCookProgressionScaled() {
-        int i = this.cookingPotData.get(0);
-        int j = this.cookingPotData.get(1);
+        int i = this.copperKettleData.get(0);
+        int j = this.copperKettleData.get(1);
         return j != 0 && i != 0 ? i * 24 / j : 0;
     }
 
