@@ -12,8 +12,5 @@ public class ClientSetup
 {
     public static void init(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> MenuScreens.register(ModMenuTypes.COPPER_KETTLE.get(), CopperKettleScreen::new));
-
-        NourishmentHungerOverlay.init();
-        ComfortHealthOverlay.init();
     }
 }

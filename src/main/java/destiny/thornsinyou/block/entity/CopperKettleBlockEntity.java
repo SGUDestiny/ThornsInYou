@@ -245,16 +245,10 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
     public static void animationTick(Level level, BlockPos pos, BlockState state, CopperKettleBlockEntity copperKettle) {
         if (copperKettle.isHeated(level, pos)) {
             RandomSource random = level.random;
-            if (random.nextFloat() < 0.2F) {
-                double x = (double) pos.getX() + 0.5D + (random.nextDouble() * 0.6D - 0.3D);
-                double y = (double) pos.getY() + 0.7D;
-                double z = (double) pos.getZ() + 0.5D + (random.nextDouble() * 0.6D - 0.3D);
-                level.addParticle(ParticleTypes.BUBBLE_POP, x, y, z, 0.0D, 0.0D, 0.0D);
-            }
             if (random.nextFloat() < 0.05F) {
-                double x = (double) pos.getX() + 0.5D + (random.nextDouble() * 0.4D - 0.2D);
-                double y = (double) pos.getY() + 0.5D;
-                double z = (double) pos.getZ() + 0.5D + (random.nextDouble() * 0.4D - 0.2D);
+                double x = (double) pos.getX() + 1.0D;
+                double y = (double) pos.getY() + 0.25D;
+                double z = (double) pos.getZ() + 0.5D;
                 double motionY = random.nextBoolean() ? 0.015D : 0.005D;
                 level.addParticle(ModParticleTypes.STEAM.get(), x, y, z, 0.0D, motionY, 0.0D);
             }

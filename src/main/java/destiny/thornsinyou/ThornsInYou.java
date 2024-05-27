@@ -1,6 +1,7 @@
 package destiny.thornsinyou;
 
 import com.mojang.logging.LogUtils;
+import destiny.thornsinyou.client.ClientSetup;
 import destiny.thornsinyou.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.inventory.RecipeBookType;
@@ -17,6 +18,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 import static destiny.thornsinyou.registry.ModBlockRegistry.BLOCKS;
@@ -36,6 +38,10 @@ public class ThornsInYou
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
+
+        if(FMLEnvironment.dist.isClient()){
+            modEventBus.addListener(ClientSetup::init);
+        }
 
         BLOCKS.register(modEventBus);
         ModBlockEntityTypes.TILES.register(modEventBus);

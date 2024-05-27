@@ -32,10 +32,6 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
     private final ContainerLevelAccess canInteractWithCallable;
     protected final Level level;
 
-    public CopperKettleMenu(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) {
-        this(windowId, playerInventory, getTileEntity(playerInventory, data), new SimpleContainerData(4));
-    }
-
 
     public CopperKettleMenu(final int windowId, final Inventory playerInventory, final CopperKettleBlockEntity blockEntity, ContainerData cookingPotDataIn) {
         super(ModMenuTypes.COPPER_KETTLE.get(), windowId);
@@ -88,6 +84,10 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
         }
 
         this.addDataSlots(cookingPotDataIn);
+    }
+
+    public CopperKettleMenu(final int windowId, final Inventory playerInventory, final FriendlyByteBuf data) {
+        this(windowId, playerInventory, getTileEntity(playerInventory, data), new SimpleContainerData(4));
     }
 
     private static CopperKettleBlockEntity getTileEntity(final Inventory playerInventory, final FriendlyByteBuf data) {

@@ -11,6 +11,8 @@
   "item.thornsinyou.scarlet_rose_seeds": "Scarlet Rose Seeds",
   "item.thornsinyou.scarlet_rose_bush_seeds": "Scarlet Rose Bush Seeds",
 
+  "block.thornsinyou.copper_kettle": "Copper Kettle",
+
   "death.attack.thornsinyou.scarlet_rose_sting": "%1$s was love-stung",
   "death.attack.thornsinyou.scarlet_rose_sting.player": "%1$s was love-stung by %2$s"
 }

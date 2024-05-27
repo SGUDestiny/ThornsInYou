@@ -54,7 +54,7 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
     public static final EnumProperty<CopperKettleSupport> SUPPORT = EnumProperty.create("support", CopperKettleSupport.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 7, 13);
+    protected static final VoxelShape SHAPE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 7.0D, 13.0D);
     protected static final VoxelShape SHAPE_WITH_TRAY = Shapes.or(SHAPE, Block.box(0.0D, -1.0D, 0.0D, 16.0D, 0.0D, 16.0D));
 
     public CopperKettleBlock(BlockBehaviour.Properties properties) {
@@ -93,6 +93,10 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
         return RenderShape.MODEL;
     }
 
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return SHAPE;
+    }
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return state.getValue(SUPPORT).equals(CopperKettleSupport.TRAY) ? SHAPE_WITH_TRAY : SHAPE;

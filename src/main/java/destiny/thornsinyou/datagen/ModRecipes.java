@@ -1,13 +1,20 @@
 package destiny.thornsinyou.datagen;
 
+import destiny.thornsinyou.registry.ModBlockRegistry;
 import destiny.thornsinyou.registry.ModItemRegistry;
 import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.TradeTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.ForgeI18n;
+import net.minecraftforge.common.data.ForgeItemTagsProvider;
 import vectorwing.farmersdelight.common.tag.ForgeTags;
 import vectorwing.farmersdelight.data.builder.CuttingBoardRecipeBuilder;
 
@@ -30,5 +37,17 @@ public class ModRecipes {
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(ModItemRegistry.SCARLET_ROSE_PETAL.get()), RecipeCategory.FOOD, ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get(), 5, 200)
                 .unlockedBy("criteria", InventoryChangeTrigger.TriggerInstance.hasItems(ModItemRegistry.SCARLET_ROSE_PETAL.get()))
                 .save(recipeConsumer);
+    }
+
+    private static void recipesVanillaAlternatives(Consumer<FinishedRecipe> consumer) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, ModBlockRegistry.COPPER_KETTLE.get(), 1)
+                .pattern("w#w")
+                .pattern("w#w")
+                .pattern(" / ")
+                .define('C', Items.COPPER_INGOT)
+                .define('B', Blocks.COPPER_BLOCK)
+                .define('I', Items.IRON_BARS)
+                .unlockedBy("has_copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
+                .save(consumer);
     }
 }
