@@ -24,6 +24,7 @@ public class ModRecipes {
     public static void register(Consumer<FinishedRecipe> consumer) {
         cuttingBoard(consumer);
         smoking(consumer);
+        recipesVanilla(consumer);
     }
 
     private static void cuttingBoard(Consumer<FinishedRecipe> consumer) {
@@ -39,11 +40,11 @@ public class ModRecipes {
                 .save(recipeConsumer);
     }
 
-    private static void recipesVanillaAlternatives(Consumer<FinishedRecipe> consumer) {
+    private static void recipesVanilla(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, ModBlockRegistry.COPPER_KETTLE.get(), 1)
-                .pattern("w#w")
-                .pattern("w#w")
-                .pattern(" / ")
+                .pattern(" I ")
+                .pattern("CCC")
+                .pattern("CBC")
                 .define('C', Items.COPPER_INGOT)
                 .define('B', Blocks.COPPER_BLOCK)
                 .define('I', Items.IRON_BARS)

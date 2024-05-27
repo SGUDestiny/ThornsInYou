@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import org.joml.Matrix4f;
-import vectorwing.farmersdelight.common.utility.TextUtils;
+import destiny.thornsinyou.utility.TextUtils;
 
 public class CopperKettleTooltip implements ClientTooltipComponent
 {

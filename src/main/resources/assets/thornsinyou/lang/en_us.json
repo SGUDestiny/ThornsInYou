@@ -13,6 +13,15 @@
 
   "block.thornsinyou.copper_kettle": "Copper Kettle",
 
+  "thornsinyou.container.copper_kettle": "Copper Kettle",
+  "thornsinyou.container.copper_kettle.served_on": "Brewed on: %s",
+  "thornsinyou.container.copper_kettle.not_heated": "Needs heat from below",
+  "thornsinyou.container.copper_kettle.heated": "Heated",
+
+  "thornsinyou.tooltip.copper_kettle.empty": "Empty",
+  "thornsinyou.tooltip.copper_kettle.single_serving": "Holds 1 beverage of:",
+  "thornsinyou.tooltip.copper_kettle.many_servings": "Holds %s brews of:",
+
   "death.attack.thornsinyou.scarlet_rose_sting": "%1$s was love-stung",
   "death.attack.thornsinyou.scarlet_rose_sting.player": "%1$s was love-stung by %2$s"
 }

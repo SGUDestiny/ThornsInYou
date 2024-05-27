@@ -1,5 +1,6 @@
 package destiny.thornsinyou.client.gui;
 
+import destiny.thornsinyou.ThornsInYou;
 import destiny.thornsinyou.block.entity.container.CopperKettleMenu;
 
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -16,10 +17,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import vectorwing.farmersdelight.FarmersDelight;
-import vectorwing.farmersdelight.client.gui.CookingPotRecipeBookComponent;
 import vectorwing.farmersdelight.common.Configuration;
-import vectorwing.farmersdelight.common.utility.TextUtils;
+import destiny.thornsinyou.utility.TextUtils;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
@@ -29,11 +28,11 @@ import java.util.List;
 public class CopperKettleScreen extends AbstractContainerScreen<CopperKettleMenu> implements RecipeUpdateListener
 {
     private static final ResourceLocation RECIPE_BUTTON_LOCATION = new ResourceLocation("textures/gui/recipe_button.png");
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(FarmersDelight.MODID, "textures/gui/copper_kettle.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(ThornsInYou.MODID, "textures/gui/copper_kettle.png");
     private static final Rectangle HEAT_ICON = new Rectangle(47, 55, 17, 15);
     private static final Rectangle PROGRESS_ARROW = new Rectangle(89, 25, 0, 17);
 
-    private final CookingPotRecipeBookComponent recipeBookComponent = new CookingPotRecipeBookComponent();
+    private final CopperKettleRecipeBookComponent recipeBookComponent = new CopperKettleRecipeBookComponent();
     private boolean widthTooNarrow;
 
     public CopperKettleScreen(CopperKettleMenu screenContainer, Inventory inv, Component titleIn) {
@@ -98,8 +97,8 @@ public class CopperKettleScreen extends AbstractContainerScreen<CopperKettleMenu
             if (this.hoveredSlot.index == 6) {
                 List<Component> tooltip = new ArrayList<>();
 
-                ItemStack mealStack = this.hoveredSlot.getItem();
-                tooltip.add(((MutableComponent) mealStack.getItem().getDescription()).withStyle(mealStack.getRarity().color));
+                ItemStack beverageStack = this.hoveredSlot.getItem();
+                tooltip.add(((MutableComponent) beverageStack.getItem().getDescription()).withStyle(beverageStack.getRarity().color));
 
                 ItemStack containerStack = this.menu.blockEntity.getContainer();
                 String container = !containerStack.isEmpty() ? containerStack.getItem().getDescription().getString() : "";
