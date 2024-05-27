@@ -22,6 +22,9 @@ public class ModItemRegistry {
     public static final RegistryObject<Item> SCARLET_ROSE_BUSH_SEEDS = ITEMS.register("scarlet_rose_bush_seeds",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> SCARLET_FRAGRANCE = ITEMS.register("scarlet_fragrance",
+            () -> new Item(new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

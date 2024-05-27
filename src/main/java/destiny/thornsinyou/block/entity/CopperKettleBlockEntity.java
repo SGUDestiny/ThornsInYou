@@ -10,7 +10,6 @@ import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -46,7 +45,7 @@ import vectorwing.farmersdelight.common.block.entity.inventory.CookingPotItemHan
 import vectorwing.farmersdelight.common.mixin.accessor.RecipeManagerAccessor;
 import vectorwing.farmersdelight.common.registry.ModParticleTypes;
 import vectorwing.farmersdelight.common.utility.ItemUtils;
-import vectorwing.farmersdelight.common.utility.TextUtils;
+import destiny.thornsinyou.utility.TextUtils;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -195,7 +194,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
         return compound;
     }
 
-    public CompoundTag writeMeal(CompoundTag compound) {
+    public CompoundTag writeBrew(CompoundTag compound) {
         if (getBrew().isEmpty()) return compound;
 
         ItemStackHandler drops = new ItemStackHandler(INVENTORY_SIZE);

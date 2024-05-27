@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import destiny.thornsinyou.ThornsInYou;
+import destiny.thornsinyou.client.recipebook.CopperKettleRecipeBookTab;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -19,7 +20,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
-import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import vectorwing.farmersdelight.common.registry.ModRecipeSerializers;
 
 import javax.annotation.Nullable;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class CopperKettleRecipeBuilder {
-    private CookingPotRecipeBookTab tab;
+    private CopperKettleRecipeBookTab tab;
     private final List<Ingredient> ingredients = Lists.newArrayList();
     private final Item result;
     private final int count;
@@ -36,21 +36,21 @@ public class CopperKettleRecipeBuilder {
     private final Item container;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
 
-    private CopperKettleRecipeBuilder(ItemLike resultIn, int count, int cookingTime, float experience, @Nullable ItemLike container) {
+    private CopperKettleRecipeBuilder(ItemLike resultIn, int count, int brewingTime, float experience, @Nullable ItemLike container) {
         this.result = resultIn.asItem();
         this.count = count;
-        this.brewingTime = cookingTime;
+        this.brewingTime = brewingTime;
         this.experience = experience;
         this.container = container != null ? container.asItem() : null;
         this.tab = null;
     }
 
-    public static CopperKettleRecipeBuilder cookingPotRecipe(ItemLike mainResult, int count, int cookingTime, float experience) {
-        return new CopperKettleRecipeBuilder(mainResult, count, cookingTime, experience, null);
+    public static CopperKettleRecipeBuilder cookingPotRecipe(ItemLike mainResult, int count, int brewingTime, float experience) {
+        return new CopperKettleRecipeBuilder(mainResult, count, brewingTime, experience, null);
     }
 
-    public static CopperKettleRecipeBuilder cookingPotRecipe(ItemLike mainResult, int count, int cookingTime, float experience, ItemLike container) {
-        return new CopperKettleRecipeBuilder(mainResult, count, cookingTime, experience, container);
+    public static CopperKettleRecipeBuilder cookingPotRecipe(ItemLike mainResult, int count, int brewingTime, float experience, ItemLike container) {
+        return new CopperKettleRecipeBuilder(mainResult, count, brewingTime, experience, container);
     }
 
     public CopperKettleRecipeBuilder addIngredient(TagKey<Item> tagIn) {
@@ -93,7 +93,7 @@ public class CopperKettleRecipeBuilder {
         return this;
     }
 
-    public CopperKettleRecipeBuilder setRecipeBookTab(CookingPotRecipeBookTab tab) {
+    public CopperKettleRecipeBuilder setRecipeBookTab(CopperKettleRecipeBookTab tab) {
         this.tab = tab;
         return this;
     }
@@ -127,31 +127,31 @@ public class CopperKettleRecipeBuilder {
     public static class Result implements FinishedRecipe
     {
         private final ResourceLocation id;
-        private final CookingPotRecipeBookTab tab;
+        private final CopperKettleRecipeBookTab tab;
         private final List<Ingredient> ingredients;
         private final Item result;
         private final int count;
-        private final int cookingTime;
+        private final int brewingTime;
         private final float experience;
         private final Item container;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
 
-        public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int cookingTimeIn, float experienceIn, @Nullable Item containerIn, @Nullable CookingPotRecipeBookTab tabIn, @Nullable Advancement.Builder advancement, @Nullable ResourceLocation advancementId) {
+        public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int brewingTimeIn, float experienceIn, @Nullable Item containerIn, @Nullable CopperKettleRecipeBookTab tabIn, @Nullable Advancement.Builder advancement, @Nullable ResourceLocation advancementId) {
             this.id = idIn;
             this.tab = tabIn;
             this.ingredients = ingredientsIn;
             this.result = resultIn;
             this.count = countIn;
-            this.cookingTime = cookingTimeIn;
+            this.brewingTime = brewingTimeIn;
             this.experience = experienceIn;
             this.container = containerIn;
             this.advancement = advancement;
             this.advancementId = advancementId;
         }
 
-        public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int cookingTimeIn, float experienceIn, @Nullable Item containerIn, @Nullable CookingPotRecipeBookTab tabIn) {
-            this(idIn, resultIn, countIn, ingredientsIn, cookingTimeIn, experienceIn, containerIn, tabIn, null, null);
+        public Result(ResourceLocation idIn, Item resultIn, int countIn, List<Ingredient> ingredientsIn, int brewingTimeIn, float experienceIn, @Nullable Item containerIn, @Nullable CopperKettleRecipeBookTab tabIn) {
+            this(idIn, resultIn, countIn, ingredientsIn, brewingTimeIn, experienceIn, containerIn, tabIn, null, null);
         }
 
         @Override
@@ -182,7 +182,7 @@ public class CopperKettleRecipeBuilder {
             if (experience > 0) {
                 json.addProperty("experience", experience);
             }
-            json.addProperty("cookingtime", cookingTime);
+            json.addProperty("brewingTime", brewingTime);
         }
 
         @Override

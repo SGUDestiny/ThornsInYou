@@ -3,6 +3,7 @@ package destiny.thornsinyou.crafting;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import destiny.thornsinyou.client.recipebook.CopperKettleRecipeBookTab;
 import destiny.thornsinyou.registry.ModBlockRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -17,7 +18,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
-import vectorwing.farmersdelight.client.recipebook.CookingPotRecipeBookTab;
 import destiny.thornsinyou.registry.ModRecipeTypes;
 import destiny.thornsinyou.registry.ModRecipeSerializers;
 
@@ -29,14 +29,14 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
 
     private final ResourceLocation id;
     private final String group;
-    private final CookingPotRecipeBookTab tab;
+    private final CopperKettleRecipeBookTab tab;
     private final NonNullList<Ingredient> inputItems;
     private final ItemStack output;
     private final ItemStack container;
     private final float experience;
     private final int brewTime;
 
-    public CopperKettleRecipe(ResourceLocation id, String group, @Nullable CookingPotRecipeBookTab tab, NonNullList<Ingredient> inputItems, ItemStack output, ItemStack container, float experience, int cookTime) {
+    public CopperKettleRecipe(ResourceLocation id, String group, @Nullable CopperKettleRecipeBookTab tab, NonNullList<Ingredient> inputItems, ItemStack output, ItemStack container, float experience, int cookTime) {
         this.id = id;
         this.group = group;
         this.tab = tab;
@@ -66,7 +66,7 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
     }
 
     @Nullable
-    public CookingPotRecipeBookTab getRecipeBookTab() {
+    public CopperKettleRecipeBookTab getRecipeBookTab() {
         return this.tab;
     }
 
@@ -177,7 +177,7 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
                 throw new JsonParseException("Too many ingredients for cooking recipe! The max is " + CopperKettleRecipe.INPUT_SLOTS);
             } else {
                 final String tabKeyIn = GsonHelper.getAsString(json, "recipe_book_tab", null);
-                final CookingPotRecipeBookTab tabIn = CookingPotRecipeBookTab.findByName(tabKeyIn);
+                final CopperKettleRecipeBookTab tabIn = CopperKettleRecipeBookTab.findByName(tabKeyIn);
 //                if (tabKeyIn != null && tabIn == null) {
 //                    ThornsInYou.LOGGER.warn("Optional field 'recipe_book_tab' does not match any valid tab. If defined, must be one of the following: " + EnumSet.allOf(CookingPotRecipeBookTab.class));
 //                }
@@ -206,7 +206,7 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
         @Override
         public CopperKettleRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
             String groupIn = buffer.readUtf();
-            CookingPotRecipeBookTab tabIn = CookingPotRecipeBookTab.findByName(buffer.readUtf());
+            CopperKettleRecipeBookTab tabIn = CopperKettleRecipeBookTab.findByName(buffer.readUtf());
             int i = buffer.readVarInt();
             NonNullList<Ingredient> inputItemsIn = NonNullList.withSize(i, Ingredient.EMPTY);
 

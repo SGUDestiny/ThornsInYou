@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thornsinyou:item/scarlet_fragrance"
+  }
+}

@@ -1,5 +1,7 @@
 package destiny.thornsinyou.datagen;
 
+import destiny.thornsinyou.client.recipebook.CopperKettleRecipeBookTab;
+import destiny.thornsinyou.datagen.builder.CopperKettleRecipeBuilder;
 import destiny.thornsinyou.registry.ModBlockRegistry;
 import destiny.thornsinyou.registry.ModItemRegistry;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -24,7 +26,8 @@ public class ModRecipes {
     public static void register(Consumer<FinishedRecipe> consumer) {
         cuttingBoard(consumer);
         smoking(consumer);
-        recipesVanilla(consumer);
+        shaped(consumer);
+        brewing(consumer);
     }
 
     private static void cuttingBoard(Consumer<FinishedRecipe> consumer) {
@@ -34,13 +37,13 @@ public class ModRecipes {
                 .build(consumer);
     }
 
-    private static void smoking(Consumer<FinishedRecipe> recipeConsumer) {
+    private static void smoking(Consumer<FinishedRecipe> consumer) {
         SimpleCookingRecipeBuilder.smoking(Ingredient.of(ModItemRegistry.SCARLET_ROSE_PETAL.get()), RecipeCategory.FOOD, ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get(), 5, 200)
                 .unlockedBy("criteria", InventoryChangeTrigger.TriggerInstance.hasItems(ModItemRegistry.SCARLET_ROSE_PETAL.get()))
-                .save(recipeConsumer);
+                .save(consumer);
     }
 
-    private static void recipesVanilla(Consumer<FinishedRecipe> consumer) {
+    private static void shaped(Consumer<FinishedRecipe> consumer) {
         ShapedRecipeBuilder.shaped(RecipeCategory.BREWING, ModBlockRegistry.COPPER_KETTLE.get(), 1)
                 .pattern(" I ")
                 .pattern("CCC")
@@ -50,5 +53,15 @@ public class ModRecipes {
                 .define('I', Items.IRON_BARS)
                 .unlockedBy("has_copper_ingot", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(consumer);
+    }
+
+    private static void brewing(Consumer<FinishedRecipe> consumer){
+        CopperKettleRecipeBuilder.cookingPotRecipe(ModItemRegistry.SCARLET_FRAGRANCE.get(), 1, 300,30)
+                .addIngredient(ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get())
+                .addIngredient(ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get())
+                .addIngredient(ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get())
+                .unlockedByAnyIngredient(ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get())
+                .setRecipeBookTab(CopperKettleRecipeBookTab.TEA)
+                .build(consumer);
     }
 }

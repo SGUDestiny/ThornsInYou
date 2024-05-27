@@ -141,7 +141,7 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
         ItemStack stack = super.getCloneItemStack(level, pos, state);
         CopperKettleBlockEntity cookingPotEntity = (CopperKettleBlockEntity) level.getBlockEntity(pos);
         if (cookingPotEntity != null) {
-            CompoundTag nbt = cookingPotEntity.writeMeal(new CompoundTag());
+            CompoundTag nbt = cookingPotEntity.writeBrew(new CompoundTag());
             if (!nbt.isEmpty()) {
                 stack.addTagElement("BlockEntityTag", nbt);
             }

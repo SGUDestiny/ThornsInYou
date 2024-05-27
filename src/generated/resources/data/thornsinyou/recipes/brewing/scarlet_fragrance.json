@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cooking",
+  "brewingTime": 300,
+  "experience": 30.0,
+  "ingredients": [
+    {
+      "item": "thornsinyou:scarlet_rose_dried_petal"
+    },
+    {
+      "item": "thornsinyou:scarlet_rose_dried_petal"
+    },
+    {
+      "item": "thornsinyou:scarlet_rose_dried_petal"
+    }
+  ],
+  "recipe_book_tab": "tea",
+  "result": {
+    "item": "thornsinyou:scarlet_fragrance"
+  }
+}

@@ -27,6 +27,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItemRegistry.SCARLET_ROSE_SEEDS);
         simpleItem(ModItemRegistry.SCARLET_ROSE_BUSH_SEEDS);
 
+        simpleItem(ModItemRegistry.SCARLET_FRAGRANCE);
+
         simpleBlockItemBlockTexture(ModBlockRegistry.SCARLET_ROSE);
     }
 
