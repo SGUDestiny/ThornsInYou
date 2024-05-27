@@ -147,7 +147,7 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         BlockEntity tileEntity = level.getBlockEntity(pos);
         if (tileEntity instanceof CopperKettleBlockEntity cookingPotEntity && cookingPotEntity.isHeated()) {
-            SoundEvent boilSound = !cookingPotEntity.getMeal().isEmpty()
+            SoundEvent boilSound = !cookingPotEntity.getBrew().isEmpty()
                     ? ModSounds.BLOCK_COOKING_POT_BOIL_SOUP.get()
                     : ModSounds.BLOCK_COOKING_POT_BOIL.get();
             double x = (double) pos.getX() + 0.5D;
