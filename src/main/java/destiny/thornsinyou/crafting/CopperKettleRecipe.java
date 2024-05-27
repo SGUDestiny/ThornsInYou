@@ -3,7 +3,6 @@ package destiny.thornsinyou.crafting;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import destiny.thornsinyou.ThornsInYou;
 import destiny.thornsinyou.registry.ModBlockRegistry;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -23,7 +22,6 @@ import destiny.thornsinyou.registry.ModRecipeTypes;
 import destiny.thornsinyou.registry.ModRecipeSerializers;
 
 import javax.annotation.Nullable;
-import java.util.EnumSet;
 
 public class CopperKettleRecipe implements Recipe<RecipeWrapper>
 {
@@ -95,7 +93,7 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
         return this.experience;
     }
 
-    public int getCookTime() {
+    public int getBrewTime() {
         return this.brewTime;
     }
 
@@ -142,7 +140,7 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
         CopperKettleRecipe that = (CopperKettleRecipe) o;
 
         if (Float.compare(that.getExperience(), getExperience()) != 0) return false;
-        if (getCookTime() != that.getCookTime()) return false;
+        if (getBrewTime() != that.getBrewTime()) return false;
         if (!getId().equals(that.getId())) return false;
         if (!getGroup().equals(that.getGroup())) return false;
         if (tab != that.tab) return false;
@@ -160,7 +158,7 @@ public class CopperKettleRecipe implements Recipe<RecipeWrapper>
         result = 31 * result + output.hashCode();
         result = 31 * result + container.hashCode();
         result = 31 * result + (getExperience() != +0.0f ? Float.floatToIntBits(getExperience()) : 0);
-        result = 31 * result + getCookTime();
+        result = 31 * result + getBrewTime();
         return result;
     }
 

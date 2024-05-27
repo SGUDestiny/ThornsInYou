@@ -52,6 +52,7 @@ public class ModBlockRegistry {
                             .sound(SoundType.COPPER)
                             .pushReaction(PushReaction.IGNORE)
                             .destroyTime(20)
+                            .noOcclusion()
             ));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){

@@ -90,7 +90,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
     private ItemStack beverageContainerStack;
     private Component customName;
 
-    protected final ContainerData cookingPotData;
+    protected final ContainerData copperKettleData;
     private final Object2IntOpenHashMap<ResourceLocation> usedRecipeTracker;
 
     private ResourceLocation lastRecipeID;
@@ -102,7 +102,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
         this.inputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.UP));
         this.outputHandler = LazyOptional.of(() -> new CookingPotItemHandler(inventory, Direction.DOWN));
         this.beverageContainerStack = ItemStack.EMPTY;
-        this.cookingPotData = createIntArray();
+        this.copperKettleData = createIntArray();
         this.usedRecipeTracker = new Object2IntOpenHashMap<>();
         this.checkNewRecipe = true;
     }
@@ -216,8 +216,8 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
 
         if (isHeated && copperKettle.hasInput()) {
             Optional<CopperKettleRecipe> recipe = copperKettle.getMatchingRecipe(new RecipeWrapper(copperKettle.inventory));
-            if (recipe.isPresent() && copperKettle.canCook(recipe.get())) {
-                didInventoryChange = copperKettle.processCooking(recipe.get(), copperKettle);
+            if (recipe.isPresent() && copperKettle.canBrew(recipe.get())) {
+                didInventoryChange = copperKettle.processBrewing(recipe.get(), copperKettle);
             } else {
                 copperKettle.brewTime = 0;
             }
@@ -242,8 +242,8 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
     }
 
 
-    public static void animationTick(Level level, BlockPos pos, BlockState state, CopperKettleBlockEntity cookingPot) {
-        if (cookingPot.isHeated(level, pos)) {
+    public static void animationTick(Level level, BlockPos pos, BlockState state, CopperKettleBlockEntity copperKettle) {
+        if (copperKettle.isHeated(level, pos)) {
             RandomSource random = level.random;
             if (random.nextFloat() < 0.2F) {
                 double x = (double) pos.getX() + 0.5D + (random.nextDouble() * 0.6D - 0.3D);
@@ -311,7 +311,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
         return false;
     }
 
-    protected boolean canCook(CopperKettleRecipe recipe) {
+    protected boolean canBrew(CopperKettleRecipe recipe) {
         if (hasInput()) {
             ItemStack resultStack = recipe.getResultItem(this.level.registryAccess());
             if (resultStack.isEmpty()) {
@@ -333,11 +333,11 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
         }
     }
 
-    private boolean processCooking(CopperKettleRecipe recipe, CopperKettleBlockEntity cookingPot) {
+    private boolean processBrewing(CopperKettleRecipe recipe, CopperKettleBlockEntity copperKettle) {
         if (level == null) return false;
 
         ++brewTime;
-        brewTimeTotal = recipe.getCookTime();
+        brewTimeTotal = recipe.getBrewTime();
         if (brewTime < brewTimeTotal) {
             return false;
         }
@@ -351,7 +351,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
         } else if (ItemStack.isSameItem(storedMealStack, resultStack)) {
             storedMealStack.grow(resultStack.getCount());
         }
-        cookingPot.setRecipeUsed(recipe);
+        copperKettle.setRecipeUsed(recipe);
 
         for (int i = 0; i < BREW_DISPLAY_SLOT; ++i) {
             ItemStack slotStack = inventory.getStackInSlot(i);
@@ -516,7 +516,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory player, Player entity) {
-        return new CopperKettleMenu(id, player, this, cookingPotData);
+        return new CopperKettleMenu(id, player, this, copperKettleData);
     }
 
     @Override

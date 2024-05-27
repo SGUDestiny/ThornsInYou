@@ -12,5 +12,5 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(ForgeRegistries.MENU_TYPES, ThornsInYou.MODID);
 
     public static final RegistryObject<MenuType<CopperKettleMenu>> COPPER_KETTLE = MENU_TYPES
-            .register("cooking_pot", () -> IForgeMenuType.create(CopperKettleMenu::new));
+            .register("copper_kettle", () -> IForgeMenuType.create(CopperKettleMenu::new));
 }

@@ -10,6 +10,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModBlockEntityTypes {
     public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, ThornsInYou.MODID);
 
-    public static final RegistryObject<BlockEntityType<CopperKettleBlockEntity>> COPPER_KETTLE = TILES.register("cooking_pot",
+    public static final RegistryObject<BlockEntityType<CopperKettleBlockEntity>> COPPER_KETTLE = TILES.register("copper_kettle",
             () -> BlockEntityType.Builder.of(CopperKettleBlockEntity::new, ModBlockRegistry.COPPER_KETTLE.get()).build(null));
 }

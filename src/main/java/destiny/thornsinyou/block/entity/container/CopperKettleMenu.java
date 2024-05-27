@@ -1,6 +1,6 @@
 package destiny.thornsinyou.block.entity.container;
 
-import com.ibm.icu.impl.Pair;
+import com.mojang.datafixers.util.Pair;
 import destiny.thornsinyou.ThornsInYou;
 import destiny.thornsinyou.block.entity.CopperKettleBlockEntity;
 import destiny.thornsinyou.registry.ModBlockRegistry;

@@ -1,14 +1,19 @@
 package destiny.thornsinyou.block;
 
 import destiny.thornsinyou.block.entity.CopperKettleBlockEntity;
+import destiny.thornsinyou.block.state.CopperKettleSupport;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -30,13 +35,15 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
-import vectorwing.farmersdelight.common.block.state.CookingPotSupport;
 import destiny.thornsinyou.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 import vectorwing.farmersdelight.common.tag.ModTags;
@@ -44,7 +51,7 @@ import vectorwing.farmersdelight.common.utility.MathUtils;
 
 public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
-    public static final EnumProperty<CookingPotSupport> SUPPORT = EnumProperty.create("support", CookingPotSupport.class);
+    public static final EnumProperty<CopperKettleSupport> SUPPORT = EnumProperty.create("support", CopperKettleSupport.class);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     protected static final VoxelShape SHAPE = Block.box(3, 0, 3, 13, 7, 13);
@@ -52,7 +59,33 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
 
     public CopperKettleBlock(BlockBehaviour.Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SUPPORT, CookingPotSupport.NONE).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(SUPPORT, CopperKettleSupport.NONE).setValue(WATERLOGGED, false));
+    }
+
+
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        ItemStack heldStack = player.getItemInHand(hand);
+        if (heldStack.isEmpty() && player.isShiftKeyDown()) {
+            level.setBlockAndUpdate(pos, state.setValue(SUPPORT, state.getValue(SUPPORT).equals(CopperKettleSupport.HANDLE)
+                    ? getTrayState(level, pos) : CopperKettleSupport.HANDLE));
+            level.playSound(null, pos, SoundEvents.LANTERN_PLACE, SoundSource.BLOCKS, 0.7F, 1.0F);
+        } else if (!level.isClientSide) {
+            BlockEntity tileEntity = level.getBlockEntity(pos);
+            if (tileEntity instanceof CopperKettleBlockEntity copperKettleEntity) {
+                ItemStack servingStack = copperKettleEntity.useHeldItemOnBrew(heldStack);
+                if (servingStack != ItemStack.EMPTY) {
+                    if (!player.getInventory().add(servingStack)) {
+                        player.drop(servingStack, false);
+                    }
+                    level.playSound(null, pos, SoundEvents.ARMOR_EQUIP_GENERIC, SoundSource.BLOCKS, 1.0F, 1.0F);
+                } else {
+                    NetworkHooks.openScreen((ServerPlayer) player, copperKettleEntity, pos);
+                }
+            }
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override
@@ -62,14 +95,14 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return state.getValue(SUPPORT).equals(CookingPotSupport.TRAY) ? SHAPE_WITH_TRAY : SHAPE;
+        return state.getValue(SUPPORT).equals(CopperKettleSupport.TRAY) ? SHAPE_WITH_TRAY : SHAPE;
     }
 
-    private CookingPotSupport getTrayState(LevelAccessor level, BlockPos pos) {
+    private CopperKettleSupport getTrayState(LevelAccessor level, BlockPos pos) {
         if (level.getBlockState(pos.below()).is(ModTags.TRAY_HEAT_SOURCES)) {
-            return CookingPotSupport.TRAY;
+            return CopperKettleSupport.TRAY;
         }
-        return CookingPotSupport.NONE;
+        return CopperKettleSupport.NONE;
     }
 
     @Override
@@ -83,7 +116,7 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
                 .setValue(WATERLOGGED, fluid.getType() == Fluids.WATER);
 
         if (context.getClickedFace().equals(Direction.DOWN)) {
-            return state.setValue(SUPPORT, CookingPotSupport.HANDLE);
+            return state.setValue(SUPPORT, CopperKettleSupport.HANDLE);
         }
         return state.setValue(SUPPORT, getTrayState(level, pos));
     }
@@ -93,7 +126,7 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
-        if (facing.getAxis().equals(Direction.Axis.Y) && !state.getValue(SUPPORT).equals(CookingPotSupport.HANDLE)) {
+        if (facing.getAxis().equals(Direction.Axis.Y) && !state.getValue(SUPPORT).equals(CopperKettleSupport.HANDLE)) {
             return state.setValue(SUPPORT, getTrayState(level, currentPos));
         }
         return state;

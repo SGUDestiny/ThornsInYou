@@ -1,7 +1,7 @@
 package destiny.thornsinyou;
 
 import com.mojang.logging.LogUtils;
-import destiny.thornsinyou.registry.ModBlockRegistry;
+import destiny.thornsinyou.registry.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.level.block.Blocks;
@@ -38,6 +38,10 @@ public class ThornsInYou
         modEventBus.addListener(this::commonSetup);
 
         BLOCKS.register(modEventBus);
+        ModBlockEntityTypes.TILES.register(modEventBus);
+        ModMenuTypes.MENU_TYPES.register(modEventBus);
+        ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
+        ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         ITEMS.register(modEventBus);
 
         CREATIVE_MODE_TABS.register(modEventBus);

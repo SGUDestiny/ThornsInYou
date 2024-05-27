@@ -20,6 +20,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         this.add(ModBlockRegistry.POTTED_SCARLET_ROSE.get(), createPotFlowerItemTable(ModBlockRegistry.SCARLET_ROSE.get()));
 
         this.dropSelf(ModBlockRegistry.SCARLET_ROSE_BUSH.get());
+
+        this.dropSelf(ModBlockRegistry.COPPER_KETTLE.get());
     }
 
     @Override
