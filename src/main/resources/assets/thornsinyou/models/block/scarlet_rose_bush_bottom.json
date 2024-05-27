@@ -1,0 +1,8 @@
+{
+  "parent": "block/cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "thornsinyou:block/scarlet_rose_bush_bottom",
+    "particle": "thornsinyou:block/scarlet_rose_bush_bottom"
+  }
+}
