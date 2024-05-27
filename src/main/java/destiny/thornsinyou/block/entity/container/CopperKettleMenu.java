@@ -62,7 +62,7 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
         // Meal Display
         this.addSlot(new CopperKettleBeverageSlot(inventory, 6, 124, 26));
 
-        // Bowl Input
+        // Cup Input
         this.addSlot(new SlotItemHandler(inventory, 7, 92, 55)
         {
             public Pair<ResourceLocation, ResourceLocation> getNoItemIcon() {
@@ -70,7 +70,7 @@ public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
             }
         });
 
-        // Bowl Output
+        // Cup Output
         this.addSlot(new CopperKettleResultSlot(playerInventory.player, blockEntity, inventory, 8, 124, 55));
 
         // Main Player Inventory
