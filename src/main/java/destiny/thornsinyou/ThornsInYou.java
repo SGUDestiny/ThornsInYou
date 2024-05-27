@@ -3,6 +3,7 @@ package destiny.thornsinyou;
 import com.mojang.logging.LogUtils;
 import destiny.thornsinyou.registry.ModBlockRegistry;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.api.distmarker.Dist;
@@ -27,6 +28,8 @@ public class ThornsInYou
 {
     public static final String MODID = "thornsinyou";
     private static final Logger LOGGER = LogUtils.getLogger();
+
+    public static final RecipeBookType RECIPE_TYPE_BREWING = RecipeBookType.create("BREWING");
 
     public ThornsInYou()
     {

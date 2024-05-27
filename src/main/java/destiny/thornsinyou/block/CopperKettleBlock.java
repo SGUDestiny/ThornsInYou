@@ -30,13 +30,14 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.Nullable;
 import vectorwing.farmersdelight.common.block.state.CookingPotSupport;
-import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
+import destiny.thornsinyou.registry.ModBlockEntityTypes;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 import vectorwing.farmersdelight.common.tag.ModTags;
 import vectorwing.farmersdelight.common.utility.MathUtils;
@@ -183,14 +184,14 @@ public class CopperKettleBlock extends BaseEntityBlock implements SimpleWaterlog
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntityTypes.COOKING_POT.get().create(pos, state);
+        return ModBlockEntityTypes.COPPER_KETTLE.get().create(pos, state);
     }
 
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> blockEntity) {
         if (level.isClientSide) {
-            return createTickerHelper(blockEntity, ModBlockEntityTypes.COOKING_POT.get(), CopperKettleBlockEntity::animationTick);
+            return createTickerHelper(blockEntity, ModBlockEntityTypes.COPPER_KETTLE.get(), CopperKettleBlockEntity::animationTick);
         }
-        return createTickerHelper(blockEntity, ModBlockEntityTypes.COOKING_POT.get(), CopperKettleBlockEntity::cookingTick);
+        return createTickerHelper(blockEntity, ModBlockEntityTypes.COPPER_KETTLE.get(), CopperKettleBlockEntity::brewingTick);
     }
 }

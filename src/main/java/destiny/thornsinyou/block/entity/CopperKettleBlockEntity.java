@@ -2,6 +2,7 @@ package destiny.thornsinyou.block.entity;
 
 import com.google.common.collect.Lists;
 import destiny.thornsinyou.block.CopperKettleBlock;
+import destiny.thornsinyou.block.entity.container.CopperKettleMenu;
 import destiny.thornsinyou.crafting.CopperKettleRecipe;
 import destiny.thornsinyou.registry.ModBlockRegistry;
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
@@ -41,7 +42,6 @@ import destiny.thornsinyou.registry.ModBlockEntityTypes;
 import destiny.thornsinyou.registry.ModRecipeTypes;
 import vectorwing.farmersdelight.common.block.entity.HeatableBlockEntity;
 import vectorwing.farmersdelight.common.block.entity.SyncedBlockEntity;
-import vectorwing.farmersdelight.common.block.entity.container.CookingPotMenu;
 import vectorwing.farmersdelight.common.block.entity.inventory.CookingPotItemHandler;
 import vectorwing.farmersdelight.common.mixin.accessor.RecipeManagerAccessor;
 import vectorwing.farmersdelight.common.registry.ModParticleTypes;
@@ -210,7 +210,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
         return compound;
     }
 
-    public static void cookingTick(Level level, BlockPos pos, BlockState state, CopperKettleBlockEntity copperKettle) {
+    public static void brewingTick(Level level, BlockPos pos, BlockState state, CopperKettleBlockEntity copperKettle) {
         boolean isHeated = copperKettle.isHeated(level, pos);
         boolean didInventoryChange = false;
 
@@ -516,7 +516,7 @@ public class CopperKettleBlockEntity extends SyncedBlockEntity implements MenuPr
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory player, Player entity) {
-        return new CookingPotMenu(id, player, this, cookingPotData);
+        return new CopperKettleMenu(id, player, this, cookingPotData);
     }
 
     @Override
