@@ -1,7 +1,14 @@
-// 1.20.1	2024-05-27T02:26:18.7066534	Block States: thornsinyou
+// 1.20.1	2024-05-28T19:17:20.274254	Block States: thornsinyou
 d3563465dcd2ec909375634466564503662e2d8d assets/thornsinyou/blockstates/potted_scarlet_rose.json
 90fa231496a38230827f495c08fab34156a53872 assets/thornsinyou/blockstates/scarlet_rose.json
+e39cd08ae6d47271c30723863b5577c02f05a7ab assets/thornsinyou/blockstates/scarlet_rose_crop.json
 6b31badf9291fb53db85394c45b77d4adb9f88a9 assets/thornsinyou/models/block/potted_scarlet_rose.json
 eb2704c8e7d10a38452012eec1b524e5c7cddda4 assets/thornsinyou/models/block/scarlet_rose.json
+379101a52ec1009313c3d0368eb98d5645049489 assets/thornsinyou/models/block/scarlet_rose_stage_0.json
+79977136efa1bb3093e9f18894d1822566493a3b assets/thornsinyou/models/block/scarlet_rose_stage_1.json
+c1fce746d583f07e18a406727830d4441d1c6ae8 assets/thornsinyou/models/block/scarlet_rose_stage_2.json
+a17e53ed38593013e91c9e17dd2bd2618b9fd8e9 assets/thornsinyou/models/block/scarlet_rose_stage_3.json
+cad62aa7edb8fdb5a237bbd102a67c6620b8ea8f assets/thornsinyou/models/block/scarlet_rose_stage_4.json
+d498d9956bf737c048597992ccc095d72f80db63 assets/thornsinyou/models/block/scarlet_rose_stage_5.json
 b8c06a39d5ac06b60916cbc22a649e4fb1cee3cc assets/thornsinyou/models/item/potted_scarlet_rose.json
 3e391376325e2952a0ddbd3f7ff4c394f4eb0b0c assets/thornsinyou/models/item/scarlet_rose.json

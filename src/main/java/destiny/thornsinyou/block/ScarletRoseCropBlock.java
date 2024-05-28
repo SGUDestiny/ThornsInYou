@@ -6,11 +6,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 
 public class ScarletRoseCropBlock extends CropBlock {
-    public static final int MAX_AGE = 6;
-    public static final IntegerProperty AGE = IntegerProperty.create("age", 0, 6);
+    public static final int MAX_AGE = 5;
+    public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
 
     public ScarletRoseCropBlock(Properties pProperties) {
         super(pProperties);

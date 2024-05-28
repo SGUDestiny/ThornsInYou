@@ -3,6 +3,7 @@ package destiny.thornsinyou;
 import com.mojang.logging.LogUtils;
 import destiny.thornsinyou.client.ClientSetup;
 import destiny.thornsinyou.registry.*;
+import destiny.thornsinyou.world.FlowerGeneration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.inventory.RecipeBookType;
 import net.minecraft.world.level.block.Blocks;
@@ -50,10 +51,15 @@ public class ThornsInYou
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         ITEMS.register(modEventBus);
         ModLootFunctions.LOOT_FUNCTIONS.register(modEventBus);
+        ModBiomesFeatures.FEATURES.register(modEventBus);
+        ModBiomesModifiers.BIOME_MODIFIER_SERIALIZERS.register(modEventBus);
+        ModPlacementModifiers.PLACEMENT_MODIFIERS.register(modEventBus);
 
         CREATIVE_MODE_TABS.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
+
+        FlowerGeneration.load();
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }

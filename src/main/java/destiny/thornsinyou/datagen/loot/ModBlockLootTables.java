@@ -34,7 +34,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.dropSelf(ModBlockRegistry.SCARLET_ROSE_BUSH.get());
 
-        add(ModBlockRegistry.COPPER_KETTLE.get(), (block) -> LootTable.lootTable().withPool(this.applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block)
+        this.add(ModBlockRegistry.COPPER_KETTLE.get(), (block) -> LootTable.lootTable().withPool(this.applyExplosionCondition(block, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(block)
                 .apply(CopyNameFunction.copyName(CopyNameFunction.NameSource.BLOCK_ENTITY)).apply(CopyBeverageFunction.builder())))));
 
 //        LootItemCondition.Builder lootitemcondition$builder = LootItemBlockStatePropertyCondition

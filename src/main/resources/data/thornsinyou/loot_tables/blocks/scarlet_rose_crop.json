@@ -6,38 +6,80 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "thornsinyou:scarlet_rose_bush_seeds",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 0,
-                "max": 1
-              }
-            }
-          ]
+          "name": "thornsinyou:scarlet_rose_bulb"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 1,
+            "max": 1
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "farmersdelight:straw_harvesters"
+          }
         },
         {
+          "condition": "minecraft:block_state_property",
+          "block": "thornsinyou:scarlet_rose_crop",
+          "properties": {
+            "age": "5"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
           "type": "minecraft:item",
-          "name": "thornsinyou:scarlet_rose_bulb",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": {
-                "min": 1,
-                "max": 1
-              }
-            },
-            {
-              "function": "minecraft:apply_bonus",
-              "enchantment": "minecraft:fortune",
-              "formula": "minecraft:uniform_bonus_count",
-              "parameters": {
-                "bonusMultiplier": 1
-              }
-            }
-          ]
+          "name": "thornsinyou:scarlet_rose_bush_seeds"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 0,
+            "max": 1
+          }
         },
+        {
+          "function": "minecraft:apply_bonus",
+          "enchantment": "minecraft:fortune",
+          "formula": "minecraft:uniform_bonus_count",
+          "parameters": {
+            "bonusMultiplier": 1
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "thornsinyou:scarlet_rose_crop",
+          "properties": {
+            "age": "5"
+          }
+        },
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "tag": "farmersdelight:straw_harvesters"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
         {
           "type": "minecraft:item",
           "name": "thornsinyou:scarlet_rose_seeds"
@@ -66,13 +108,50 @@
           "condition": "minecraft:block_state_property",
           "block": "thornsinyou:scarlet_rose_crop",
           "properties": {
-            "age": "6"
+            "age": "5"
           }
         },
         {
           "condition": "minecraft:match_tool",
           "predicate": {
             "tag": "farmersdelight:straw_harvesters"
+          }
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "thornsinyou:scarlet_rose"
+        }
+      ],
+      "functions": [
+        {
+          "function": "minecraft:set_count",
+          "count": {
+            "type": "minecraft:uniform",
+            "min": 1,
+            "max": 1
+          }
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:inverted",
+          "term": {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "tag": "farmersdelight:straw_harvesters"
+            }
+          }
+        },
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "thornsinyou:scarlet_rose_crop",
+          "properties": {
+            "age": "5"
           }
         }
       ]

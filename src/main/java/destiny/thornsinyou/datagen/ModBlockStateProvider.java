@@ -27,7 +27,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlockRegistry.POTTED_SCARLET_ROSE.get(), models().singleTexture("potted_scarlet_rose", new ResourceLocation("flower_pot_cross"), "plant",
                 blockTexture(ModBlockRegistry.SCARLET_ROSE.get())).renderType("cutout"));
 
-        makeScarletRoseCrop((CropBlock) ModBlockRegistry.SCARLET_ROSE_CROP.get(), "scarlet_rose_crop_stage_", "scarlet_rose_crop_stage_");
+        makeScarletRoseCrop((CropBlock) ModBlockRegistry.SCARLET_ROSE_CROP.get(), "scarlet_rose_stage_", "scarlet_rose_stage_");
     }
 
     public void makeScarletRoseCrop(CropBlock block, String modelName, String textureName) {

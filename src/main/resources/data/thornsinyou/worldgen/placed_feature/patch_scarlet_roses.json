@@ -1,0 +1,23 @@
+{
+  "feature": "thornsinyou:patch_scarlet_roses",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 30
+    },
+    {
+      "type": "minecraft:in_square"
+    },
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "MOTION_BLOCKING"
+    },
+    {
+      "type": "minecraft:biome"
+    },
+    {
+      "type": "thornsinyou:biome_tag",
+      "tag": "minecraft:is_overworld"
+    }
+  ]
+}
