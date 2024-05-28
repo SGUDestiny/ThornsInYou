@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "thornsinyou:item/empty_tea_cup"
+  }
+}

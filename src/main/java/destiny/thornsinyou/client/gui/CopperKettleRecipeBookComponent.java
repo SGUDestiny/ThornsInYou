@@ -1,5 +1,6 @@
 package destiny.thornsinyou.client.gui;
 
+import destiny.thornsinyou.ThornsInYou;
 import destiny.thornsinyou.crafting.CopperKettleRecipe;
 import destiny.thornsinyou.utility.TextUtils;
 import net.minecraft.client.gui.screens.recipebook.RecipeBookComponent;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class CopperKettleRecipeBookComponent extends RecipeBookComponent
 {
-    protected static final ResourceLocation RECIPE_BOOK_BUTTONS = new ResourceLocation(FarmersDelight.MODID, "textures/gui/recipe_book_buttons.png");
+    protected static final ResourceLocation RECIPE_BOOK_BUTTONS = new ResourceLocation(ThornsInYou.MODID, "textures/gui/recipe_book_buttons.png");
 
     @Override
     protected void initFilterButtonTextures() {
@@ -30,7 +31,7 @@ public class CopperKettleRecipeBookComponent extends RecipeBookComponent
     @Override
     @Nonnull
     protected Component getRecipeFilterName() {
-        return TextUtils.getTranslation("container.recipe_book.cookable");
+        return TextUtils.getTranslation("container.recipe_book.brewable");
     }
 
     @Override

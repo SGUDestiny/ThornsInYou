@@ -18,7 +18,6 @@ public class ModCreativeTabs {
             .icon(() -> new ItemStack(ModItemRegistry.SCARLET_ROSE_BULB.get()))
             .title(Component.translatable("itemGroup.thornsinyou.main_tab"))
             .displayItems((parameters, output) -> {
-                output.accept(ModBlockRegistry.COPPER_KETTLE.get());
                 output.accept(ModBlockRegistry.SCARLET_ROSE_BUSH.get());
                 output.accept(ModBlockRegistry.SCARLET_ROSE.get());
                 output.accept(ModItemRegistry.SCARLET_ROSE_BULB.get());
@@ -26,6 +25,9 @@ public class ModCreativeTabs {
                 output.accept(ModItemRegistry.SCARLET_ROSE_DRIED_PETAL.get());
                 output.accept(ModItemRegistry.SCARLET_ROSE_SEEDS.get());
                 output.accept(ModItemRegistry.SCARLET_ROSE_BUSH_SEEDS.get());
+                output.accept(ModBlockRegistry.COPPER_KETTLE.get());
+                output.accept(ModItemRegistry.SCARLET_FRAGRANCE.get());
+                output.accept(ModItemRegistry.EMPTY_TEA_CUP.get());
             })
             .build()
     );

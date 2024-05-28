@@ -11,9 +11,16 @@
   "item.thornsinyou.scarlet_rose_seeds": "Scarlet Rose Seeds",
   "item.thornsinyou.scarlet_rose_bush_seeds": "Scarlet Rose Bush Seeds",
 
+  "block.thornsinyou.scarlet_rose_crop": "Scarlet Rose",
+
+  "item.thornsinyou.empty_tea_cup": "Empty Tea Cup",
+
+  "item.thornsinyou.scarlet_fragrance": "Scarlet Fragrance",
+
   "block.thornsinyou.copper_kettle": "Copper Kettle",
 
   "thornsinyou.container.copper_kettle": "Copper Kettle",
+  "thornsinyou.container.recipe_book.brewable": "Showing Cookable",
   "thornsinyou.container.copper_kettle.served_on": "Brewed on: %s",
   "thornsinyou.container.copper_kettle.not_heated": "Needs heat from below",
   "thornsinyou.container.copper_kettle.heated": "Heated",

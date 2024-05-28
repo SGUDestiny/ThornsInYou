@@ -9,6 +9,14 @@
     {
       "count": 2,
       "item": "thornsinyou:scarlet_rose_petal"
+    },
+    {
+      "chance": 0.5,
+      "item": "thornsinyou:scarlet_rose_petal"
+    },
+    {
+      "chance": 0.25,
+      "item": "thornsinyou:scarlet_rose_petal"
     }
   ],
   "tool": {

@@ -1,6 +1,9 @@
 {
   "type": "thornsinyou:brewing",
   "brewingTime": 300,
+  "container": {
+    "item": "thornsinyou:empty_tea_cup"
+  },
   "experience": 30.0,
   "ingredients": [
     {
@@ -11,6 +14,12 @@
     },
     {
       "item": "thornsinyou:scarlet_rose_dried_petal"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:sweet_berries"
     }
   ],
   "recipe_book_tab": "tea",

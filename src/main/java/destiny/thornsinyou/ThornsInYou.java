@@ -49,6 +49,7 @@ public class ThornsInYou
         ModRecipeTypes.RECIPE_TYPES.register(modEventBus);
         ModRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
         ITEMS.register(modEventBus);
+        ModLootFunctions.LOOT_FUNCTIONS.register(modEventBus);
 
         CREATIVE_MODE_TABS.register(modEventBus);
 

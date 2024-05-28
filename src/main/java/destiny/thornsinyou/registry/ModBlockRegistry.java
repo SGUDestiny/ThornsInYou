@@ -4,6 +4,7 @@ import destiny.thornsinyou.ThornsInYou;
 import destiny.thornsinyou.block.CopperKettleBlock;
 import destiny.thornsinyou.block.ScarletRoseBushBlock;
 import destiny.thornsinyou.block.ScarletRoseBlock;
+import destiny.thornsinyou.block.ScarletRoseCropBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -45,6 +46,18 @@ public class ModBlockRegistry {
     public static final RegistryObject<Block> POTTED_SCARLET_ROSE = BLOCKS.register("potted_scarlet_rose",
             () -> new FlowerPotBlock(() -> ((FlowerPotBlock) Blocks.FLOWER_POT), ModBlockRegistry.SCARLET_ROSE,
                     BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH).noOcclusion()));
+
+    public static final RegistryObject<Block> SCARLET_ROSE_CROP = BLOCKS.register("scarlet_rose_crop",
+            () -> new ScarletRoseCropBlock(
+                    BlockBehaviour.Properties.of()
+                            .noOcclusion()
+                            .noCollission()
+                            .instabreak()
+                            .sound(SoundType.SWEET_BERRY_BUSH)
+                            .offsetType(BlockBehaviour.OffsetType.XZ)
+                            .ignitedByLava()
+                            .pushReaction(PushReaction.DESTROY)
+            ));
 
     public static final RegistryObject<Block> COPPER_KETTLE = registerBlock("copper_kettle",
             () -> new CopperKettleBlock(
