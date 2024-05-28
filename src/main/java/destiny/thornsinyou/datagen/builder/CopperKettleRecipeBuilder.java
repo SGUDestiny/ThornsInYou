@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import destiny.thornsinyou.ThornsInYou;
 import destiny.thornsinyou.client.recipebook.CopperKettleRecipeBookTab;
+import destiny.thornsinyou.registry.ModRecipeSerializers;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -20,7 +21,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.registries.ForgeRegistries;
-import vectorwing.farmersdelight.common.registry.ModRecipeSerializers;
+import vectorwing.farmersdelight.FarmersDelight;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -192,7 +193,7 @@ public class CopperKettleRecipeBuilder {
 
         @Override
         public RecipeSerializer<?> getType() {
-            return ModRecipeSerializers.COOKING.get();
+            return ModRecipeSerializers.BREWING.get();
         }
 
         @Nullable
