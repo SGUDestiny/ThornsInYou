@@ -10,10 +10,9 @@ import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.common.crafting.FoodServingRecipe;
 
 public class ModRecipeSerializers {
+
         public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, ThornsInYou.MODID);
 
         public static final RegistryObject<RecipeSerializer<?>> BREWING = RECIPE_SERIALIZERS.register("brewing", CopperKettleRecipe.Serializer::new);
 
-        public static final RegistryObject<SimpleCraftingRecipeSerializer<?>> FOOD_SERVING =
-                RECIPE_SERIALIZERS.register("food_serving", () -> new SimpleCraftingRecipeSerializer<>(FoodServingRecipe::new));
 }
