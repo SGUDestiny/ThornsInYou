@@ -169,7 +169,7 @@ public class CopperKettleRecipeBuilder {
             json.add("ingredients", arrayIngredients);
 
             JsonObject objectResult = new JsonObject();
-            objectResult.addProperty("item", ForgeRegistries.ITEMS.getKey(result).toString());
+            objectResult.addProperty("items", ForgeRegistries.ITEMS.getKey(result).toString());
             if (count > 1) {
                 objectResult.addProperty("count", count);
             }
@@ -177,7 +177,7 @@ public class CopperKettleRecipeBuilder {
 
             if (container != null) {
                 JsonObject objectContainer = new JsonObject();
-                objectContainer.addProperty("item", ForgeRegistries.ITEMS.getKey(container).toString());
+                objectContainer.addProperty("items", ForgeRegistries.ITEMS.getKey(container).toString());
                 json.add("container", objectContainer);
             }
             if (experience > 0) {

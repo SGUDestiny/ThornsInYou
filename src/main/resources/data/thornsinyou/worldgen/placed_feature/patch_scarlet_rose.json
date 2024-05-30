@@ -1,9 +1,9 @@
 {
-  "feature": "thornsinyou:patch_scarlet_roses",
+  "feature": "thornsinyou:patch_scarlet_rose",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 30
+      "chance": 70
     },
     {
       "type": "minecraft:in_square"
@@ -16,7 +16,7 @@
       "type": "minecraft:biome"
     },
     {
-      "type": "thornsinyou:biome_tag",
+      "type": "farmersdelight:biome_tag",
       "tag": "minecraft:is_overworld"
     }
   ]

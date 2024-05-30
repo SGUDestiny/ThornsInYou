@@ -36,13 +36,13 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(ThornsInYou.MODID,"item/" + item.getId().getPath()));
+                new ResourceLocation("items/generated")).texture("layer0",
+                new ResourceLocation(ThornsInYou.MODID,"items/" + item.getId().getPath()));
     }
 
     private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block> item) {
         return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation("items/generated")).texture("layer0",
                 new ResourceLocation(ThornsInYou.MODID,"block/" + item.getId().getPath()));
     }
 }

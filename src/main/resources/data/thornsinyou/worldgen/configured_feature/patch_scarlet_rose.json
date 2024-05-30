@@ -44,7 +44,7 @@
           "to_place": {
             "type": "minecraft:simple_state_provider",
             "state": {
-              "Name": "minecraft:poppy"
+              "Name": "thornsinyou:scarlet_rose_bush"
             }
           }
         }

@@ -13,30 +13,28 @@ import net.minecraft.world.level.levelgen.placement.PlacementModifierType;
 import net.minecraftforge.registries.ForgeRegistries;
 import destiny.thornsinyou.registry.ModPlacementModifiers;
 
-public class BiomeTagFilter extends PlacementFilter
-{
-    public static final Codec<BiomeTagFilter> CODEC = RecordCodecBuilder.create((builder) ->
-            builder.group(
-                    TagKey.codec(ForgeRegistries.BIOMES.getRegistryKey()).fieldOf("tag").forGetter((instance) -> instance.biomeTag)
-            ).apply(builder, BiomeTagFilter::new));
+public class BiomeTagFilter extends PlacementFilter {
+    public static final Codec<destiny.thornsinyou.world.filter.BiomeTagFilter> CODEC = RecordCodecBuilder.create((builder) -> {
+        return builder.group(TagKey.codec(ForgeRegistries.BIOMES.getRegistryKey()).fieldOf("tag").forGetter((instance) -> {
+            return instance.biomeTag;
+        })).apply(builder, destiny.thornsinyou.world.filter.BiomeTagFilter::new);
+    });
     private final TagKey<Biome> biomeTag;
 
     private BiomeTagFilter(TagKey<Biome> biomeTag) {
         this.biomeTag = biomeTag;
     }
 
-    public static BiomeTagFilter biomeIsInTag(TagKey<Biome> biomeTag) {
-        return new BiomeTagFilter(biomeTag);
+    public static destiny.thornsinyou.world.filter.BiomeTagFilter biomeIsInTag(TagKey<Biome> biomeTag) {
+        return new destiny.thornsinyou.world.filter.BiomeTagFilter(biomeTag);
     }
 
-    @Override
     protected boolean shouldPlace(PlacementContext context, RandomSource random, BlockPos pos) {
         Holder<Biome> biome = context.getLevel().getBiome(pos);
-        return biome.is(biomeTag);
+        return biome.is(this.biomeTag);
     }
 
-    @Override
     public PlacementModifierType<?> type() {
-        return ModPlacementModifiers.BIOME_TAG.get();
+        return (PlacementModifierType)ModPlacementModifiers.BIOME_TAG.get();
     }
 }

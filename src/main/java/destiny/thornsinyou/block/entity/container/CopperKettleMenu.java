@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class CopperKettleMenu extends RecipeBookMenu<RecipeWrapper>
 {
-    public static final ResourceLocation EMPTY_CONTAINER_SLOT_CUP = new ResourceLocation(ThornsInYou.MODID, "item/empty_container_slot_cup");
+    public static final ResourceLocation EMPTY_CONTAINER_SLOT_CUP = new ResourceLocation(ThornsInYou.MODID, "items/empty_container_slot_cup");
 
     public final CopperKettleBlockEntity blockEntity;
     public final ItemStackHandler inventory;

@@ -10,17 +10,18 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
-public record FlowerConfiguration(int tries, int xzSpread, int ySpread, Holder<PlacedFeature> primaryFeature, Holder<PlacedFeature> secondaryFeature, @Nullable Holder<PlacedFeature> floorFeature
-) implements FeatureConfiguration
-{
-    public static final Codec<FlowerConfiguration> CODEC = RecordCodecBuilder.create((config) -> config.group(
-            ExtraCodecs.POSITIVE_INT.fieldOf("tries").orElse(64).forGetter(FlowerConfiguration::tries),
-            ExtraCodecs.NON_NEGATIVE_INT.fieldOf("xz_spread").orElse(4).forGetter(FlowerConfiguration::xzSpread),
-            ExtraCodecs.NON_NEGATIVE_INT.fieldOf("y_spread").orElse(3).forGetter(FlowerConfiguration::ySpread),
-            PlacedFeature.CODEC.fieldOf("primary_feature").forGetter(FlowerConfiguration::primaryFeature),
-            PlacedFeature.CODEC.fieldOf("secondary_feature").forGetter(FlowerConfiguration::secondaryFeature),
-            PlacedFeature.CODEC.optionalFieldOf("floor_feature").forGetter(floorConfig -> Optional.ofNullable(floorConfig.floorFeature))
-    ).apply(config, (tries, xzSpread, yspread, primary, secondary, floor) -> floor.map(placedFeatureHolder -> new FlowerConfiguration(tries, xzSpread, yspread, primary, secondary, placedFeatureHolder)).orElseGet(() -> new FlowerConfiguration(tries, xzSpread, yspread, primary, secondary, null))));
+public record FlowerConfiguration(int tries, int xzSpread, int ySpread, Holder<PlacedFeature> primaryFeature, Holder<PlacedFeature> secondaryFeature, @Nullable Holder<PlacedFeature> floorFeature) implements FeatureConfiguration {
+    public static final Codec<destiny.thornsinyou.world.configuration.FlowerConfiguration> CODEC = RecordCodecBuilder.create((config) -> {
+        return config.group(ExtraCodecs.POSITIVE_INT.fieldOf("tries").orElse(64).forGetter(destiny.thornsinyou.world.configuration.FlowerConfiguration::tries), ExtraCodecs.NON_NEGATIVE_INT.fieldOf("xz_spread").orElse(4).forGetter(destiny.thornsinyou.world.configuration.FlowerConfiguration::xzSpread), ExtraCodecs.NON_NEGATIVE_INT.fieldOf("y_spread").orElse(3).forGetter(destiny.thornsinyou.world.configuration.FlowerConfiguration::ySpread), PlacedFeature.CODEC.fieldOf("primary_feature").forGetter(destiny.thornsinyou.world.configuration.FlowerConfiguration::primaryFeature), PlacedFeature.CODEC.fieldOf("secondary_feature").forGetter(destiny.thornsinyou.world.configuration.FlowerConfiguration::secondaryFeature), PlacedFeature.CODEC.optionalFieldOf("floor_feature").forGetter((floorConfig) -> {
+            return Optional.ofNullable(floorConfig.floorFeature);
+        })).apply(config, (tries, xzSpread, yspread, primary, secondary, floor) -> {
+            return (destiny.thornsinyou.world.configuration.FlowerConfiguration)floor.map((placedFeatureHolder) -> {
+                return new destiny.thornsinyou.world.configuration.FlowerConfiguration(tries, xzSpread, yspread, primary, secondary, placedFeatureHolder);
+            }).orElseGet(() -> {
+                return new destiny.thornsinyou.world.configuration.FlowerConfiguration(tries, xzSpread, yspread, primary, secondary, (Holder)null);
+            });
+        });
+    });
 
     public FlowerConfiguration(int tries, int xzSpread, int ySpread, Holder<PlacedFeature> primaryFeature, Holder<PlacedFeature> secondaryFeature, @Nullable Holder<PlacedFeature> floorFeature) {
         this.tries = tries;

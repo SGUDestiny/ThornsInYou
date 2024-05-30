@@ -1,0 +1,9 @@
+{
+  "type": "thornsinyou:add_features_by_filter",
+  "allowed_biomes": ["minecraft:dark_forest", "minecraft:flower_forest"],
+  "denied_biomes": ["minecraft:lush_caves", "minecraft:mushroom_fields"],
+  "min_temperature": 0.5,
+  "max_temperature": 0.8,
+  "features": "thornsinyou:patch_scarlet_rose",
+  "step": "vegetal_decoration"
+}
