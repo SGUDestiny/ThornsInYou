@@ -1,7 +1,12 @@
 buildscript {
     repositories {
-        maven { url 'https://maven.minecraftforge.net' }
+        maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
+        maven {
+            // JEI
+            name = "Progwml6 maven"
+            url = "https://dvs1.progwml6.com/files/maven/"
+        }
 
         mavenCentral()
     }
@@ -144,6 +149,11 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 
     implementation fg.deobf("curse.maven:farmers-delight-398521:5051242")
+
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:15.0.0.12")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:15.0.0.12")
+    // at runtime, use the full JEI jar for Forge
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}-forge:15.0.0.12")
 
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

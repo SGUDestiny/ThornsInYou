@@ -27,8 +27,8 @@ public class ModItemRegistry {
 
     public static final RegistryObject<Item> SCARLET_ROSE_SEEDS = ITEMS.register("scarlet_rose_seeds",
             () -> new ItemNameBlockItem(ModBlockRegistry.SCARLET_ROSE_CROP.get(), new Item.Properties()));
-    public static final RegistryObject<Item> SCARLET_ROSE_BUSH_SEEDS = ITEMS.register("scarlet_rose_bush_seeds",
-            () -> new Item(new Item.Properties()));
+//    public static final RegistryObject<Item> SCARLET_ROSE_BUSH_SEEDS = ITEMS.register("scarlet_rose_bush_seeds",
+//            () -> new Item(new Item.Properties()));
 
     public static final RegistryObject<Item> EMPTY_TEA_CUP = ITEMS.register("empty_tea_cup",
             () -> new Item(new Item.Properties()
